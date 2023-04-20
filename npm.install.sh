@@ -56,6 +56,8 @@ LIGHTCYAN='\033[1;36m'
 WHITE='\033[1;37m'
 # ----------------------------------
 
+# 1st: remove dependencies: sfra-webpack-builder (line 52) & storefront-reference-architecture (54) in package.json
+# 2nd: install node package
 
 npm i cleave.js && npm i
 rm -rf sfra-webpack-builder && unzip sfra-webpack-builder.zip && cd sfra-webpack-builder && npm i
