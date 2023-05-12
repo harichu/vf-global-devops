@@ -8,6 +8,7 @@ export NVM_DIR="$HOME/.nvm"
 #install nvm if not installed
 command -v nvm >/dev/null 2>&1 || { echo >&2 "nvm is required, but it's not installed.  installing....."; curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash; }
 
+command -v jq >/dev/null 2>&1 || { echo >&2 "jq is required, but it's not installed.  installing....."; sudo apt-get install jq -y; }
 
 requireVersion=14.21
 read currentVersion _ <<< $(nvm current)
@@ -30,10 +31,12 @@ done
 isOldNodeVersion=`checkVersion "$currentVersion" "$requireVersion" && echo false || echo true`
 if [ $isOldNodeVersion == 'true' ]; then
   installed=`nvm which $requireVersion | grep "not yet installed"`
-  if [[ $installed != "" ]]; then
+  if [[ $installed == "" ]]; then
     nvm install $requireVersion
   fi
 fi
+
+nvm use $requireVersion
 
 # ----------------------------------
 # Colors
@@ -59,8 +62,12 @@ WHITE='\033[1;37m'
 # 1st: remove dependencies: sfra-webpack-builder (line 52) & storefront-reference-architecture (54) in package.json
 # 2nd: install node package
 
+tmp=$(mktemp)    
+jq 'del(.dependencies."sfra-webpack-builder")' package.json > "$tmp" && mv "$tmp" package.json
+jq 'del(.dependencies."storefront-reference-architecture")' package.json > "$tmp" && mv "$tmp" package.json
+
+rm -rf node_modules/
 npm i cleave.js && npm i
-rm -rf sfra-webpack-builder && unzip sfra-webpack-builder.zip && cd sfra-webpack-builder && npm i
-cd ../ && cp -r sfra-webpack-builder/node_modules/ . && cp -r sfra-webpack-builder node_modules/
+rm -rf sfra-webpack-builder && unzip sfra-webpack-builder.zip && cd sfra-webpack-builder && npm i && cd ../ && cp -r sfra-webpack-builder/node_modules/ . && cp -r sfra-webpack-builder node_modules/
 
 echo -e "\n${LIGHTGREEN}> npm install completed. ${NOCOLOR}"
