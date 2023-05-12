@@ -7,7 +7,6 @@ export NVM_DIR="$HOME/.nvm"
 
 #install nvm if not installed
 command -v nvm >/dev/null 2>&1 || { echo >&2 "nvm is required, but it's not installed.  installing....."; curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash; }
-
 command -v jq >/dev/null 2>&1 || { echo >&2 "jq is required, but it's not installed.  installing....."; sudo apt-get install jq -y; }
 
 requireVersion=14.21
@@ -35,6 +34,11 @@ if [ $isOldNodeVersion == 'true' ]; then
     nvm install $requireVersion
   fi
 fi
+
+#sudo mv /usr/local/bin/node /usr/local/bin/node-system    
+#sudo mv /usr/bin/node /usr/bin/node-system 
+#USER=`whoami`
+#sudo ln -s /home/$USER/.nvm/versions/node/v$requireVersion/bin/node /usr/bin/node
 
 nvm use $requireVersion
 
