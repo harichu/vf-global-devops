@@ -71,7 +71,7 @@ jq 'del(.dependencies."sfra-webpack-builder")' package.json > "$tmp" && mv "$tmp
 jq 'del(.dependencies."storefront-reference-architecture")' package.json > "$tmp" && mv "$tmp" package.json
 
 rm -rf node_modules/
-npm i cleave.js && npm i
-rm -rf sfra-webpack-builder && unzip sfra-webpack-builder.zip && cd sfra-webpack-builder && npm i && cd ../ && cp -r sfra-webpack-builder/node_modules/ . && cp -r sfra-webpack-builder node_modules/
+npm i cleave.js && npm i --unsafe-perm
+rm -rf sfra-webpack-builder && unzip sfra-webpack-builder.zip && cd sfra-webpack-builder && npm i --unsafe-perm && cd ../ && cp -r sfra-webpack-builder/node_modules/ . && cp -r sfra-webpack-builder node_modules/
 
 echo -e "\n${LIGHTGREEN}> npm install completed. ${NOCOLOR}"
