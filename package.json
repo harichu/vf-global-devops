@@ -49,9 +49,7 @@
         "postcss-loader": "^3.0.0",
         "sass-loader": "^7.3.1",
         "sfcc-ci": "^2.6.0",
-        "sfra-webpack-builder": "git+https://git@github.com/SalesforceCommerceCloud/sfra-webpack-builder.git#master",
         "shx": "^0.3.2",
-        "storefront-reference-architecture": "git+https://git@github.com/SalesforceCommerceCloud/storefront-reference-architecture.git#v6.0.0",
         "swiper": "^6.5.7"
     },
     "sfcc": {
