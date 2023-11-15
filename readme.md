@@ -9,7 +9,7 @@
 2. copy file SFCC-DEPLOY.zip vào /system và giải nén
 > cd /system && unzip SFCC-DEPLOY.zip
 
-3. config webserver root trỏ về thư mục `/system/SFCC-DEPLOY/.deploy`
+3. config webserver root trỏ về thư mục `/system/SFCC-DEPLOY/.deploy` ,,,, nhớ phan quyền đọc/ghi thư mục /system/SFCC-DEPLOY/.deploy & /system/SFCC-DEPLOY/CONF cho apache
 
 4. cd vào thư mục /system/SOURCE.SFCC & thực hiện clone bitbucket về thư mục này
 > cd /system/SOURCE.SFCC && git clone git@bitbucket.org:vinfast-north-america/commerce.git .
